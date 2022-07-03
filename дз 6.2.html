@@ -1,0 +1,29 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашнее задание 2</title>
+        <script>
+            let massiv = []
+            let massivnew = []
+            let min = 0
+            let max = 10
+            let N = 10
+            for (let i = 0; i < N; i++) { 
+                massiv.push(Math.round(Math.random() * (max - min) + min)); //создание рандомных чисел в исходном массиве
+            }
+            console.log(massiv) // исходный массив с рандомными числами
+            for ( let i = 0; i < N; i++) {
+                if(massiv[i] % 2 == 0)
+                massivnew.push(i+1)
+            }
+            console.log(massivnew)
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

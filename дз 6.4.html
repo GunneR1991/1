@@ -1,0 +1,43 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашнее задание 4 </title>
+        <script>
+            let massiv = []; 
+            let a = 1;
+            let b = 10;
+            let N = 10;
+
+            for (let i = 0; i < N; i++) { 
+                massiv.push(Math.round(Math.random() * (b - a) + a)); //создание рандомных чисел в исходном массиве
+            }
+            console.log(massiv) // исходный массив
+
+            for ( let i = 0; i < N; i++) { // сортировка бинарными вставками
+                x = Number(massiv[i])
+                right = i - 1;
+                left = 0;
+                while (left <= right) {
+                    z = Math.round((left + right)/2)
+                    if ( x < Number(massiv[z])) {
+                        left = z + 1
+                    } else {
+                        right = z - 1
+                    }
+                }
+                    for ( let j = i - 1; j >= left; j--) {
+                    massiv[j + 1] = massiv[j];
+                    }
+                    massiv[left] = x;
+            }
+            console.log(massiv) // сортированный массив в сторону уменьшения
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

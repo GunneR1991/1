@@ -1,0 +1,55 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашнее задание 3 </title>
+        <script>
+            let massiv = [];
+            let a = 1;
+            let b = 10;
+            let N = 10;
+
+            for (let i = 0; i < N; i++) { 
+                massiv.push(Math.round(Math.random() * (b - a) + a)); //создание рандомных чисел в исходном массиве
+            }
+
+            console.log(massiv)
+
+            let min = massiv[0];
+            let max = massiv[0];
+            let minl = 0;
+            let maxl = 0;
+            for (let i = 0; i < N; i++) {
+                if (massiv[i] < min) {
+                    min = massiv[i];
+                    minl = i; // определение местоположения минимального значения
+                }
+                if (massiv[i] > max) {
+                    max = massiv[i]; 
+                    maxl = i; // определение местоположения максимального значения
+                }
+            }
+            let x; 
+                if (minl > maxl) {
+                    x = minl;
+                    minl = maxl;
+                    maxl = x;
+                }
+            let proizvedenie = 1
+            for (let i = minl; i < maxl; i++) {
+                proizvedenie *= massiv[i]
+            }
+            let summa = maxl - minl - 1
+            console.log("место в массиве минимального числа-" +  (minl+1) )
+            console.log("место в массиве максимального числа-" + (maxl+1) )
+            console.log("количество элементов-" + summa)
+            console.log("произведение элементов массива без максимального и минимального числа-" + proizvedenie)
+        </script>
+</head>
+<body>
+    
+</body>
+</html>
