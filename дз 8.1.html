@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашнее задание 1 </title>
+        <script>
+            let P = [];
+            let Q = [];
+            let M = +prompt("количество строк матрицы P (M=)");
+            let N = +prompt("количество столбцов матрицы P(строк матрицы (Q)) (N=)");
+            let L = +prompt("количество столбцов матрицы Q(L=)");
+            if (M <= 0 || N <= 0 || L <= 0) {
+                alert("Ошибка, перезапустите и введите число больше 0!")
+            }
+            function Matrix() {
+                document.write(" ")
+            for (let I = 0; I < M; I++) { //задаем двухмерный массив P со случайными значениями
+                P[I]=[];
+                for (let J = 0; J < N; J++) {
+                    P[I][J] = Math.round(9 * Math.random());
+                }
+            }
+            for (let I = 0; I < N; I++) { //задаем двухмерный массив Q со случайными значениями
+                Q[I]=[];
+                for (let J = 0; J < L; J++) {
+                    Q[I][J] = Math.round(9 * Math.random());
+                }
+            }
+            let qq = []; // формируем двумерную матрицу в одномерную
+            let k = 0;
+            for ( let J = 0; J < L; J++) {
+                for (let I = 0; I < N; I++) {
+                    qq[k] = Q[I][J];
+                    k++;
+                }         
+            }
+            for ( let I = 0; I < qq.length; I++) { // сортируем одномерный массив QQ бинарными вставками
+                X = Number(qq[I])
+                right = I - 1;
+                left = 0;
+                while (left <= right) {
+                    Z = Math.round((left + right)/2)
+                    if ( X > Number(qq[Z])) {
+                        left = Z + 1;
+                    } else {
+                        right = Z - 1;
+                    }
+                }
+                    for ( let J = I - 1; J >= left; J--) {
+                    qq[J + 1] = qq[J];
+                    }
+                    qq[left] = X;
+            }
+            let QQ = [];
+            k = 0;
+                for ( let I = 0; I < N; I++) { // преобразовываем одномерный массив QQ в двумерный
+                    QQ[I] = [];
+                    for (let J = 0; J < L; J++) {
+                        QQ[I][J] = qq[k];
+                        k++;
+                    } 
+                }
+            let Pr = [N]
+            for (let J = 0; J < N; J++) { // высчитываем произведение каждого столбца матрицы P
+                Pr[J] = 1;
+                for (let I = 0; I < M; I++ ) {
+                    Pr[I] *= P[I][J];
+                }
+            }
+            for (let J = 0; J < N; J++ ) {
+            }
+            let S = [] 
+                for (let I = 0; I < N; I++) { // формируем матрицу S путем вычитания из каждого элемента строки QQ произведения стобца матрицы QQ
+                    S[I] = []
+                for(let J = 0; J < L; J++) {
+                    S[I][J] = QQ[I][J] - Pr[I]
+                    }
+                }
+            }
+            Matrix(Q)
+            Matrix(P)
+            Matrix(QQ)
+            Matrix(S)
+        </script>
+</head>
+<body>
+    
+</body>
+</html>
