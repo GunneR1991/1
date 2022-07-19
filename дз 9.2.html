@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Домашнее задание 2</title>
+        <script> 
+            function bfs(graph, start, end) {
+                let queue = [start]  // в очередь рассматриваемых вершин добавляем начальную вершину
+                let prev = { [start]: null } // начинаем наш путь с вершины start
+                while (queue.length > 0) {
+                    let curr = queue.shift(); // в переменную curr помещаем первый элемент из очереди, удаляя его
+                if (curr === end) {
+                    let path = [];
+                    while (curr) {
+                        path.unshift(curr); // в массив path на каждом шаге записываем номер вершины curr
+                        curr = prev[curr]; // в переменную curr записываем номер вершины из которой мы попадаем в curr
+                    }
+                    return path;
+                }
+                if (curr in graph) { // проверяем есть ли такая вершина в графе
+                    for (let v of graph[curr]) {  // перебираем все вершины смежные с рассматриваемой вершиной
+                        if (!(v in prev)) {  // если мы эту смежную вершину ещё не рассматривали
+                            prev[v] = curr; // добавляем значение рассматриваемой вершины
+                            queue.push(v); // добавляем смежную вершину в очередь для рассмотрения
+                            }
+                        }
+                    }
+                }
+            }
+
+        let graph = {
+            "1": [5, 2],
+            "2": [1, 3],
+            "3": [2],
+            "4": [],
+            "5": [1]
+        }
+
+        let start = +prompt("начало");
+        let end = +prompt("конец");
+        let way = bfs(graph, start, end);
+
+        if (way) {
+            console.log("кротчайший путь: " + (way.length - 1));
+            console.log("Путь из точки " + start + " в точку " + end + ": " + way.toString().replaceAll(",", "-"));
+        } else {
+            console.log("Длина кратчайшего пути: -1");
+            console.log("Путь из точки " + start + " в точку " + end + " невозможен!");
+        }
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

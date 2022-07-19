@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашнее задание 1 </title>
+        <script>
+            let N = +prompt("количество городов=");
+            if (N < 0 || N > 100) { //количество городов
+                alert("Ошибка, введено не верное число, перезапустите и введите число 0<= N <= 100")
+                location.reload()
+            }
+            let A = []
+            function Matrix() {
+                document.write(" ")
+            document.write("матрица=" + ("<br/>"))
+            for (i = 0; i < N; i++) { 
+                A[i] = []
+                for (j = i; j < N; j++) {
+                    if (i > j) {
+                        A[i][j] = 0
+                    } else {
+                        A[i][j] = Math.round(Math.random())
+                        }
+                    document.write(A[i][j] + "  ")
+                    }
+                    document.write("<br/>")
+                }
+            }
+            function treeSum(A) {
+                return A.flat(Infinity).reduce((sum, n) => sum + n, 0);
+            }
+            Matrix()
+            document.write("количество дорог=" + treeSum(A))  
+
+        </script>
+</head>
+<body>
+    
+</body>
+</html>
