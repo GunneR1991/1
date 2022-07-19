@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> дополнительное домашнее задание 1</title>
+        <script>
+            class User {
+                constructor(name, surname) {
+                    this.name = name;
+                    this.surname = surname;
+                }
+                get fullname() {
+                    return this.getFullName();
+                }
+                getFullName() {
+                    return this.name + " " + this.surname;
+                }
+            }
+            
+            let name = "Вася";
+            let surname = "Пупкин";
+            const A = new User(name, surname)
+            console.log("Имя Фамилия - " + A.fullname)
+
+            class Student extends User {
+                constructor(name, surname, year, date) {
+                    super(name, surname);
+                    this.year = year;
+                    this.date = date;
+                }
+                get course() {
+                    return this.getCourse();
+                }
+                getCourse() {
+                    return this.date - this.year;
+                }
+            }
+            let date = new Date();
+            date = date.getFullYear()
+            let year = +prompt("год поступления")
+            const B = new Student(name, surname, year, date)
+            if (B.course <= 5) {
+                console.log("текущий курс - " + B.course)
+            } else {
+                console.log("институт окончен")
+            }
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

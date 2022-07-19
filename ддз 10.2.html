@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> дополнительное домашнее задание 2</title>
+        <script>
+            class Validator {
+                constructor() {
+                }
+            isEmail(str) {
+                return ((str.indexOf('@') !== -1) && (str.indexOf('.') !== -1)) // проверка эмейла
+            }
+            isDomain(str) {
+                return ((str.indexOf('.com') !== -1) || (str.indexOf('.ru') !== -1) || (str.indexOf('.net') !== -1)) // проверка домена
+            }
+            isDate(str) {
+                let date = str.match(/[0-9]{2}\.[0-9]{2}\.[0-9]{4}/); //проверка даты
+                    return date === null ? false : true;
+            }
+            isPhone(str) {
+                let phone = str.match(/\+7\ \([0-9]{3}\)\ [0-9]{2}-[0-9]{2}-[0-9]{3}/); //проверка номера телефона
+                return phone === null ? false : true;
+                }
+            }
+        let validator = new Validator();
+        console.log(validator.isEmail('test@mail.ru'));
+        console.log(validator.isDomain('test.ru'));
+        console.log(validator.isDate('09.07.2022'));
+        console.log(validator.isPhone('+7 (913) 30-00-393'));
+        </script>
+</head>
+<body>
+    
+</body>
+</html>
