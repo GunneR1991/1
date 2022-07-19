@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Домашнее задание 2</title>
+        <script>
+            class BA {
+                constructor (Name, N, Cash, Perc, Money) {
+                this.Name = Name; // вкладчик
+                this.N = N; // номер счета
+                this.Cash = Cash; // первоначальная сумма
+                this.Perc = Perc; // процентная ставка
+                this.Money = Money; // сумма пополнения
+                }
+                get Deposit() { 
+                    return this.calcDeposit()
+                }
+                get Percent() {
+                    return this.calcPercent()
+                }
+                calcDeposit() {
+                    return Math.round(this.Cash) + Math.round(this.Money); //общая сумма с учетом пополнения
+                }
+                calcPercent() {
+                    return Math.round(this.Deposit) + (Math.round(this.Deposit) * Math.round(this.Perc) * 50 / 365) / 100; // начисляем % за 50 дней вклада
+                }
+            }
+            let Name = ["A", "B", "C", "D", "E"]; //клиенты
+            let N = ["12345", "23456", "34567", "45678", "56789"]; //номера счетов
+            let Cash = [10000, 20000, 30000, 40000, 50000]; //начальные суммы
+            let Perc = [9, 8, 7, 6, 5]; // процентные ставки
+            let Money = [5000, 4000, 3000, 2000, 1000]; // суммы пополнения
+            let client = []
+            for (i = 0; i < 5; i++) {
+                document.write(`<br>` + "клиент №" + (i + 1) + '<br>');
+                client[i] = new BA(Name[i], N[i], Cash[i], Perc[i], Money[i]);
+                document.write(`вкладчик - `+ client[i].Name + `<br>` + `номер счета - ` + client[i].N + `<br>` + 
+                `начальная сумма = ` + client[i].Cash + `<br>` 
+                 + `процентная ставка = ` + client[i].Perc + `<br>` + `сумма пополнения = ` + client[i].Money + 
+                 `<br>` + `сумма с учетом пополнения = ` + client[i].Deposit + `<br>`
+                  + `начисленные проценты = ` + client[i].Percent + `<br>`)
+            }
+
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

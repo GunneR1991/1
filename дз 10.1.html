@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Домашнее задание 2</title>
+        <script>
+            class Worker {
+                constructor(name, surname, rate, days) {
+                    this.name = name;
+                    this.surname = surname;
+                    this.rate = rate;
+                    this.days = days;
+                }
+                get getSalary() {
+                    return this.calcSalary();
+                }
+                calcSalary() {
+                    return this.rate * this.days;
+                }
+            }
+                name = prompt("Введите Имя");
+                surname = prompt("Введите Фамилию");
+                rate = +prompt("Введите ставку за день");
+                if (rate < 0) {
+                    alert("оплата не может быть отрицательной, введите значение заного")
+                    location.reload
+                }
+                days = +prompt("Введите количество отработанных дней в месяце");
+                if(days < 0 || days > 31){
+                    alert("неправильное количество дней отработанных в месяце")
+                    location.reload
+                }
+            const A = new Worker(name, surname, rate, days)
+            document.write("Имя - " + name + "</br>");
+            document.write("Фамилия - " + surname + "</br>");
+            document.write("Ставка за день - " + rate + "</br>");
+            document.write("Количество отработанных дней - " + days + "</br>");
+            document.write("Оплата= " + A.getSalary + "</br>")
+        </script>
+</head>
+<body>
+    
+</body>
+</html>
