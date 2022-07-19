@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Домашнее задание 4</title>
+        <script>
+            "use strict";
+            var users = [];
+            
+            function hash(n) {  //генерация хэша в 16ти ричной системе счисления
+                let sum = 0;
+                for (let i = 0; i < n.length; i++) {
+                    sum += n.charCodeAt(i);    
+                }
+                let hash = sum % 256;
+                hash = hash.toString(16);
+                return hash;
+            }
+
+            function chek(message) { //проверка на пустоту
+                let n;
+                do {
+                    n = prompt(message);
+                    if (n == null) {
+                        break;
+                    }
+                    n = n.trim();
+                    if (n == '') {
+                        alert('Поле не заполнено!');
+                    }
+                } while (n == '');
+                return n;        
+            }
+
+            function signUp() {   // регистрация пользователя
+                let name = chek('Введите имя пользователя!');
+                if (name != null) {
+                    let flag = true;
+                    if (users.length > 0) {
+                        for (let i = 0; i < users.length; i++) {
+                            if (name == users[i].name) {
+                                flag = false;
+                                alert('Такое имя пользователя уже существует!');
+                                break;
+                            }                  
+                        }
+                    }
+                    if (flag) {
+                        let password = chek('Введите пароль!');
+                        if (password != null) {
+                            let user = {
+                                name: name,
+                                password: hash(password),
+                            }
+                            users.push(user);
+                            alert('Вы успешно зарегестрированны!');                             
+                        }
+                    }                  
+                }
+            }
+            function signIn() {  // вход 
+                let name = chek('Введите имя пользователя!');
+                if (name != null) {
+                    let flag = true;
+                    let i;
+                    if (users.length > 0) {
+                        for (i = 0; i < users.length; i++) {
+                            if (name == users[i].name) {
+                                flag = true;
+                                break;             
+                            }
+                            flag = false;
+                        }
+                    } else {
+                    flag = false;
+                    }
+                    if (flag) {
+                        let pass;
+                        do {
+                            pass = chek('Введите пароль!');
+                            if (pass == null) {
+                                break;
+                            }
+                            if (hash(pass) == users[i].password) {
+                                alert('Вы успешно зашли на сайт!');
+                            } else {
+                                alert('Введен неверный пароль!');
+                                pass = false;
+                            }
+                        } while (!pass);
+                    } else {
+                        alert('Пользователя с этим именем не существует!');
+                    }                    
+                }
+            }
+
+
+        </script>
+        <button onclick="signUp()">Зарегистрироваться</button>
+        <button onclick="signIn()">Войти</button>
+</head>
+<body>
+    
+</body>
+</html>

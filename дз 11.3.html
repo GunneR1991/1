@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Домашнее задание 3</title>
+        <script>
+            function hash(n) { //функция вычисления хэша 
+                let summa = 0;
+                for(let j = 0; j < n.length; j++) {
+                    summa += n.charCodeAt(j);
+                }
+                let result = summa % 256;
+                result = result.toString(16);
+                return result; 
+            }
+            let a = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+             "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
+              "x", "y", "z"]; // исходный массив доступных элементов
+            let b = []; // массив всех пересечений элементов
+            for (let i = 0; i < a.length; i++) { // цикл для пересечения всех элементов
+                for(let j = 0; j < a.length; j++) {
+                    b.push(a[i] + a[j]); 
+                } 
+            } 
+            let c = []; // массив элементов у которых хэш совпадает с хэшем "qwerty"
+            for(let i = 0; i < b.length; i++) {
+                if (hash(b[i]) == hash(`qwerty`)) {
+                c.push(b[i]);
+                } 
+            }
+            console.log(c) 
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

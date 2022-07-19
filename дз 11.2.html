@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Домашнее задание 2</title>
+        <script>
+            let n = "qwerty" //наш пароль который переводим в хэш
+            function hash(n) { // функция для перевода пароля в хэш
+                let summa = 0;
+                for(let j = 0; j < n.length; j++) {
+                    summa += n[j].charCodeAt();
+                }
+                let result = summa % 256;
+                result = result.toString(16);
+                return result; 
+            }
+            console.log(hash(n));
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

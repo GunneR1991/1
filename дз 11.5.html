@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Домашнее задание 5</title>
+        <script>
+            "use strict";
+            var users = [];
+            
+            function hash(n) {  //генерация хэша в 16ти ричной системе счисления
+                let sum = 0;
+                for (let i = 0; i < n.length; i++) {
+                    sum += n.charCodeAt(i);    
+                }
+                let hash = sum % 256;
+                hash = hash.toString(16);
+                return hash;
+            }
+
+            function chek(message) { //проверка на пустоту
+                let n;
+                do {
+                    n = prompt(message);
+                    if (n == null) {
+                        break;
+                    }
+                    n = n.trim();
+                    if (n == '') {
+                        alert('Поле не заполнено!');
+                    }
+                } while (n == '');
+                return n;        
+            }
+
+            function signUp() {   // регистрация пользователя
+                let name = chek('Введите имя пользователя!');
+                if (name != null) {
+                    let flag = true;
+                    if (users.length > 0) {
+                        for (let i = 0; i < users.length; i++) {
+                            if (name == users[i].name) {
+                                flag = false;
+                                alert('Такое имя пользователя уже существует!');
+                                break;
+                            }                  
+                        }
+                    }
+                    if (flag) {
+                        let password = chek('Введите пароль!');
+                        if (password != null) {
+                            let user = {
+                                name: name,
+                                password: hash(password),
+                            }
+                            users.push(user);
+                            alert('Вы успешно зарегестрированны!');                             
+                        }
+                    }                  
+                }
+            }
+            function signIn() {  // вход 
+                let name = chek('Введите имя пользователя!');
+                if (name != null) {
+                    let flag = true;
+                    let i;
+                    if (users.length > 0) {
+                        for (i = 0; i < users.length; i++) {
+                            if (name == users[i].name) {
+                                flag = true;
+                                break;             
+                            }
+                            flag = false;
+                        }
+                    } else {
+                    flag = false;
+                    }
+                    if (flag) {
+                        let pass;
+                        do {
+                            pass = chek('Введите пароль!');
+                            if (pass == null) {
+                                break;
+                            }
+                            if (hash(pass) == users[i].password) {
+                                alert('Вы успешно зашли на сайт!');
+                            } else {
+                                alert('Введен неверный пароль!');
+                                pass = false;
+                            }
+                        } while (!pass);
+                    } else {
+                        alert('Пользователя с этим именем не существует!');
+                    }                    
+                }
+            }
+
+
+        </script>
+        <button onclick="signUp()">Зарегистрироваться</button>
+        <button onclick="signIn()">Войти</button>
+        
+</head>
+<body>
+    </br>
+    Для удобства 
+    </br>
+    Пароли где хэш совпадает с хэшем пароля "qwerty"
+    </br>
+0: "2z", 1: "3y", 2: "4x", 3: "5w", 4: "6v" ,5: "7u" ,6: "8t", 7: "9s", 8: "Ak", 9: "Bj"
+10: "Ci", 11: "Dh", 12: "Eg", 13: "Ff", 14: "Ge", 15: "Hd", 16: "Ic", 17: "Jb", 18: "Ka", 19: "RZ"
+,20: "SY", 21: "TX", 22: "UW", 23: "VV", 24: "WU", 25: "XT", 26: "YS", 27: "ZR", 28: "aK", 29: "bJ"
+,30: "cI", 31: "dH", 32: "eG", 33: "fF", 34: "gE", 35: "hD", 36: "iC", 37: "jB", 38: "kA", 39: "s9"
+40: "t8", 41: "u7", 42: "v6", 43: "w5", 44: "x4", 45: "y3", 46: "z2"
+</body>
+</html>

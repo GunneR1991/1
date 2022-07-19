@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Домашнее задание 1</title>
+        <script>
+            let n = prompt("введите любое значение, которое хотим перевести в хэш");
+            let a = +prompt("введите систему счисления")
+            if (a < 2 && a > 60) {
+                alert("выберите другую систему счисления")
+                location.reload
+            }
+            function hash(n) { //функция для перебора любого значения в хэш
+                let summa = 0;
+                for(let j = 0; j < n.length; j++) { 
+                    summa += n[j].charCodeAt();
+                }
+                let result = summa % 256;
+                result = result.toString(a) // результат в выбранной вами системе счисления
+                return result; 
+            }
+            console.log(hash(n));
+        </script>
+</head>
+<body>
+    
+</body>
+</html>
