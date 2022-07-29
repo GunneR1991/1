@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <title> Демодень </title>
+    <script>
+        class bicyclist { //создаем класс велогонщиков
+            constructor(NameandLastName, number, rating, country) {
+                this.NameandLastName = NameandLastName,
+                    this.number = number;
+                this.rating = rating;
+                this.country = country;
+            }
+        }
+        //велогонщики 6ти стран
+        let Russia1 = new bicyclist('Maikin Roman', '111', '21', 'Russia');
+        let Russia2 = new bicyclist('Mamykin Matvei', '222', '15', 'Russia');
+        let Russia3 = new bicyclist('Rybalkin Aleksei', '333', '26', 'Russia');
+        let Russia4 = new bicyclist('Strakhov Dmitrii', '444', '9', 'Russia');
+        let Russianbicyclist = [Russia1, Russia2, Russia3, Russia4]; //добавляем всех гонщиков России в массив
+
+        let Germany1 = new bicyclist('Andreas Schillinger', '555', '13', 'Germany');
+        let Germany2 = new bicyclist('Pascal Ackermann', '666', '11', 'Germany');
+        let Germany3 = new bicyclist('Nils Politt', '777', '5', 'Germany');
+        let Germany4 = new bicyclist('Paul Martens', '888', '3', 'Germany');
+        let Germanbicyclist = [Germany1, Germany2, Germany3, Germany4]; //добавляем всех гонщиков Германии в массив
+
+        let France1 = new bicyclist('Julien Bérard', '999', '1', 'France');
+        let France2 = new bicyclist('Bryan Coquard', '123', '8', 'France');
+        let France3 = new bicyclist('Eddy Seigneur', '234', '16', 'France');
+        let France4 = new bicyclist('Stéphane Rossetto', '345', '26', 'France');
+        let Frenchbicyclist = [France1, France2, France3, France4]; //добавляем всех гонщиков Франции в массив
+
+        let Spain1 = new bicyclist('David Arroyo Durán', '456', '12', 'Spain');
+        let Spain2 = new bicyclist('Igor Flores', '567', '44', 'Spain');
+        let Spain3 = new bicyclist('Sebastián Mora', '678', '25', 'Spain');
+        let Spain4 = new bicyclist('Óscar Pereiro Sio', '789', '2', 'Spain');
+        let Spanishbicyclist = [Spain1, Spain2, Spain3, Spain4]; //добавляем всех гонщиков Испании в массив
+
+        let Italy1 = new bicyclist('Nicola Conci', '890', '4', 'Italy');
+        let Italy2 = new bicyclist('Fabio Aru', '901', '7', 'Italy');
+        let Italy3 = new bicyclist('Marco Canola', '012', '17', 'Italy');
+        let Italy4 = new bicyclist('Damiano Cima', '098', '20', 'Italy');
+        let Italianbicyclist = [Italy1, Italy2, Italy3, Italy4]; //добавляем всех гонщиков Италии в массив
+
+        let Britain1 = new bicyclist('Matthew Holmes', '987', '6', 'Britain');
+        let Britain2 = new bicyclist('Mark Cavendish', '876', '10', 'Britain');
+        let Britain3 = new bicyclist('Geraint Thomas', '765', '18', 'Britain');
+        let Britain4 = new bicyclist('Adam Blythe', '654', '22', 'Britain');
+        let Britainbicyclist = [Britain1, Britain2, Britain3, Britain4]; //добавляем всех гонщиков Британии в массив
+
+
+
+        //подсчет времени прохождения 3х этапов всех гонщиков
+        let timeAll = 0;
+        for (let i = 0; i < 3; i++) {
+            timeAll += time(Russianbicyclist[i]);
+        }
+
+        function time() { // функция для подсчета времени прохождения 3х этапов гонщиков(округление до тысячных)
+            let time = 0;
+            for (let i = 0; i < 3; i++) {
+                time += 5 * Math.random();
+                time = Math.round(time * 1000) / 1000;
+            }
+            return time;
+        }
+
+        function TimingAndSum(countryArray) {  //функция подсчета суммы мест занятых внутри 1 страны
+            let timing = [];
+            for (let i = 0; i < countryArray.length; i++) {
+                timing[i] = time(countryArray[i]);
+            }
+            let sum = 0;
+            for (let i = 0; i < timing.length; i++) { //сумма времени прохождения этапов
+                sum += timing[i];
+            }
+            return sum;
+        }
+
+
+        function countryCalcTime(countryArray, countryName) {   // функция определение самого худшего времени внутри страны
+            let timing = [];
+            for (let i = 0; i < countryArray.length; i++) {
+                timing[i] = time(countryArray[i]);
+            }
+            console.log(timing);
+            let minTime = Math.min(...timing);
+            console.log("Минимальное время прохождения круга " + `${countryName} - ${minTime}`);
+            return minTime;
+        }
+
+        console.log("ПЕРВЫЙ КРУГ ВТОРОГО ЭТАПА");
+
+        let rus = countryCalcTime(Russianbicyclist, "(Россия)");
+        let ger = countryCalcTime(Germanbicyclist, "(Германия)");
+        let fra = countryCalcTime(Frenchbicyclist, "(Франция)");
+        let esp = countryCalcTime(Spanishbicyclist, "(Испания)");
+        let ita = countryCalcTime(Italianbicyclist, "(Италия)");
+        let bri = countryCalcTime(Britainbicyclist, "(Британия)");
+        let countries = [rus, ger, fra, esp, ita, bri]; // добавляем в массив
+
+        function countryPlace() { //подсчет мест стран по минимальному времени 
+            countries.sort(function (a, b) { //сортировка стран по времени
+                return a - b;
+            });
+            for (let i = 0; i < countries.length; i++) { // страны занявшие места после первого круга
+                if (countries[i] == rus) {
+                    console.log(`${i + 1} место - Россия`);
+                } else if (countries[i] == ger) {
+                    console.log(`${i + 1} место - Германия`);
+                } else if (countries[i] == fra) {
+                    console.log(`${i + 1} место - Франция`);
+                } else if (countries[i] == esp) {
+                    console.log(`${i + 1} место - Испания`);
+                } else if (countries[i] == ita) {
+                    console.log(`${i + 1} место - Италия`);
+                } else if (countries[i] == bri) {
+                    console.log(`${i + 1} место - Британия`);
+                }
+            }
+        }
+        countryPlace()
+
+        Russia = TimingAndSum(Russianbicyclist);
+        Germany = TimingAndSum(Germanbicyclist);
+        France = TimingAndSum(Frenchbicyclist);
+        Spain = TimingAndSum(Spanishbicyclist);
+        Italy = TimingAndSum(Italianbicyclist);
+        Britain = TimingAndSum(Britainbicyclist);
+        countries = [Russia, Germany, France, Spain, Italy, Britain];   // добавляем в массив
+
+        countries.sort(function (a, b) {    //сортировка по минимальной сумме
+            return a - b;
+        });
+        console.log("МЕСТА СТРАН В ИТОГОВОМ ПРОТОКОЛЕ ПЕРВОГО КРУГА");
+        for (let i = 0; i < countries.length; i++) {
+            if (countries[i] == Russia) {
+                console.log(`${i + 1} место - Россия`);
+            } else if (countries[i] == Germany) {
+                console.log(`${i + 1} место - Германия`);
+            } else if (countries[i] == France) {
+                console.log(`${i + 1} место - Франция`);
+            } else if (countries[i] == Spain) {
+                console.log(`${i + 1} место - Испания`);
+            } else if (countries[i] == Italy) {
+                console.log(`${i + 1} место - Италия`);
+            } else if (countries[i] == Britain) {
+                console.log(`${i + 1} место - Британия`);
+            }
+        }
+
+
+        console.log("Страны проходящие во 2й круг")
+        for (let i = 0; i < 4; i++) {
+            if (countries[i] == Russia) {
+                console.log(`Россия`);
+            } else if (countries[i] == Germany) {
+                console.log(`Германия`);
+            } else if (countries[i] == France) {
+                console.log(`Франция`);
+            } else if (countries[i] == Spain) {
+                console.log(`Испания`);
+            } else if (countries[i] == Italy) {
+                console.log(`Италия`);
+            } else if (countries[i] == Britain) {
+                console.log(`Британия`);
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
